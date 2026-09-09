@@ -95,6 +95,7 @@ Before analyzing, verify where possible:
 Use the built-in spreadsheet capability for `.xlsx`, `.xls`, `.csv`, and `.tsv` files.
 
 - Never overwrite the original workbook unless the user explicitly requests it.
+- Treat the Google Sheet titled `New New Bills Calendar - Matcha` as a permanent read-only source. Never perform a write action against it, including cell/formula/format changes, comments, renaming, moving, sharing changes, or deletion. Duplication is allowed and is the required first step before any editable work; perform all requested changes only in the duplicate.
 - Inspect workbook structure, formulas, tables, named ranges, dates, currencies, duplicates, missing keys, and visible formula errors before drawing conclusions.
 - Preserve raw source tabs and values. Put cleaning, mappings, and calculations in distinct labeled areas when changes are requested.
 - Reconcile summary totals independently to source detail. Do not compare a total to itself and call it a check.
