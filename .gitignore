@@ -1,0 +1,36 @@
+# Financial source files and derived personal reports
+*.xlsx
+*.xls
+*.xlsm
+*.csv
+*.tsv
+*.pdf
+*.ofx
+*.qfx
+*.qbo
+*.png
+*.jpg
+*.jpeg
+*.heic
+
+# Secrets and local configuration
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# Working directories
+data/
+inputs/
+outputs/
+reports/
+tmp/
+
+# Local/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
