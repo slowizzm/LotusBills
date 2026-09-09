@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/slowizzm/LotusBills/blob/main/schemas/bill-record.schema.json",
+  "title": "Bill record",
+  "description": "Normalized, source-backed facts extracted from one provider statement.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "provider",
+    "service_category",
+    "currency",
+    "source"
+  ],
+  "properties": {
+    "provider": { "type": "string", "minLength": 1 },
+    "service_category": { "type": "string", "minLength": 1 },
+    "account_last_four": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9A-Za-z]{0,4}$"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "statement_date": { "type": ["string", "null"], "format": "date" },
+    "billing_period_start": { "type": ["string", "null"], "format": "date" },
+    "billing_period_end": { "type": ["string", "null"], "format": "date" },
+    "billing_period_days": { "type": ["integer", "null"], "minimum": 1 },
+    "due_date": { "type": ["string", "null"], "format": "date" },
+    "previous_balance": { "type": ["number", "null"] },
+    "payments_and_credits": { "type": ["number", "null"] },
+    "new_charges": { "type": ["number", "null"] },
+    "amount_due": { "type": ["number", "null"] },
+    "past_due_amount": { "type": ["number", "null"] },
+    "plan_or_tier": { "type": ["string", "null"] },
+    "usage_quantity": { "type": ["number", "null"] },
+    "usage_unit": { "type": ["string", "null"] },
+    "unit_rate": { "type": ["number", "null"] },
+    "fixed_charges": { "type": ["number", "null"] },
+    "variable_charges": { "type": ["number", "null"] },
+    "taxes": { "type": ["number", "null"] },
+    "fees": { "type": ["number", "null"] },
+    "discounts_and_credits": { "type": ["number", "null"] },
+    "adjustments": { "type": ["number", "null"] },
+    "reading_type": {
+      "type": ["string", "null"],
+      "enum": ["actual", "estimated", "mixed", "not_applicable", null]
+    },
+    "autopay_stated": { "type": ["boolean", "null"] },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["description", "amount"],
+        "properties": {
+          "description": { "type": "string" },
+          "amount": { "type": ["number", "null"] },
+          "quantity": { "type": ["number", "null"] },
+          "unit": { "type": ["string", "null"] },
+          "rate": { "type": ["number", "null"] },
+          "recurrence": {
+            "type": ["string", "null"],
+            "enum": ["recurring", "one_time", "unknown", null]
+          },
+          "source_locator": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["filename"],
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "page_or_section": { "type": ["string", "null"] },
+        "extraction_notes": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
