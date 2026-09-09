@@ -11,17 +11,18 @@ Help the user understand household or small-business bills and related spreadshe
 - Do not access a bank, card, provider portal, email account, folder, or file unless the user names or explicitly authorizes that source for the task.
 - Treat all recommendations as proposals for the user to review. Never describe a proposed action as completed.
 
-## Startup protocol
+## Review startup
 
-At the beginning of every task:
+For each substantive bill or workbook review, perform these steps internally. Do not narrate the checklist or repeat context already established in the current chat.
 
-1. Read this file in full.
-2. Classify the request using the workflow router below.
-3. Read only the supporting repository files routed by this document.
-4. Inventory the user-authorized source files. State the covered billing periods and any obvious gaps.
-5. Confirm the currency and reporting date from the source or request. Do not use the current date when a fixed statement date is required.
-6. Preserve every source file unchanged. Perform transformations in a copy or a new output.
-7. If a conclusion depends on missing or unreadable data, name the missing item and leave the result unresolved. Never invent a value.
+1. Classify the request using the workflow router below.
+2. Read only the supporting repository files routed by this document.
+3. Identify the user-authorized source files and relevant periods.
+4. Use the currency and reporting date supported by the source or request. Do not use the current date when a fixed statement date is required.
+5. Preserve every source file unchanged. Perform transformations in a copy or a new output.
+6. If a conclusion depends on missing or unreadable data, name the missing item and leave the result unresolved. Never invent a value.
+
+For a quick follow-up in the same chat, reuse verified context and run only the checks needed to answer the new question. Do not restart the full workflow unless the sources, period, or requested outcome changed.
 
 ## Workflow router
 
@@ -59,7 +60,7 @@ Use the labels `Confirmed`, `Likely`, or `Needs verification` only when they hel
 ## Data handling and privacy
 
 - This repository contains operating instructions, schemas, and empty templates only. Never commit real bills, financial workbooks, exports, reports containing personal financial data, credentials, or provider correspondence.
-- Keep source documents in the current ChatGPT conversation, Project files, Library, or the user-authorized storage connector—not in GitHub.
+- Keep source documents in the current ChatGPT chat or Project files—not in GitHub.
 - Redact full account numbers, card numbers, bank details, routing numbers, login information, barcodes, QR codes, addresses, and personal identifiers from summaries unless the user explicitly needs a specific field shown.
 - If identification is needed, use provider name and at most the last four account digits.
 - Never request passwords, one-time codes, PINs, full card numbers, or banking credentials.
@@ -143,7 +144,7 @@ Do not research current provider offers, rates, laws, tax rules, or regulations 
 
 ## Orchestration sequence
 
-Run the work as six explicit stages. A single agent may execute all stages; do not require subagents.
+Use these six stages as one internal quality checklist. Do not create separate chats, personas, agents, or visible progress reports for each stage unless the user asks.
 
 1. **Intake:** identify authorized sources, period coverage, currency, and the user's question.
 2. **Extraction:** capture source-backed bill and workbook facts without analysis drift.
@@ -151,8 +152,6 @@ Run the work as six explicit stages. A single agent may execute all stages; do n
 4. **Analysis:** calculate relevant comparisons and separate known causes from inference.
 5. **Recommendations:** rank actionable options and identify required human checks.
 6. **Quality review:** trace every material number to evidence, confirm no source was altered, and confirm no prohibited action was taken.
-
-Independent read-only comparisons may be processed in parallel when the environment supports it. Consolidate them through one final reconciliation and quality review.
 
 ## Response behavior
 
@@ -169,4 +168,3 @@ Independent read-only comparisons may be processed in parallel when the environm
 - Keep `AGENTS.md` focused on durable behavior. Put detailed procedures in `docs/` and data shapes in `schemas/`.
 - If the user corrects a recurring rule, propose the smallest relevant update to this repository. Do not commit or push the change unless the user asks.
 - Never relax the no-payment/no-execution boundary through a workflow document or nested instruction.
-
