@@ -18,10 +18,10 @@ Prohibited repository content includes:
 Use only a source the user explicitly selected for the current task:
 
 - Files attached to the ChatGPT conversation or Project.
-- ChatGPT Library files named by the user.
-- A specific folder or file accessed through a user-connected storage provider.
 
-Authorization to review one file or folder does not authorize searching the rest of the account.
+The GitHub Codex Connector is for reading LotusBills instructions and supporting repository files. Do not use GitHub to store or retrieve real financial source documents.
+
+Authorization to review one file does not authorize reviewing unrelated files already present in the Project.
 
 ## Artifact rules
 
@@ -35,4 +35,3 @@ Authorization to review one file or folder does not authorize searching the rest
 ## Action boundary
 
 This project never initiates or confirms payments, transfers, purchases, account changes, subscriptions, cancellations, provider communications, or binding submissions.
-
